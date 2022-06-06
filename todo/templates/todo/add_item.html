@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+</head>
+<body>
+    <h1>Add Item</h1>
+    <form method="POST" action="add">
+        {% csrf_token %} 
+        <!-- We need to add the CSRF or cross-site request forgery token.
+This token is a randomly generated unique value which will be added
+to the form as a hidden input field when the forms submitted.
+And works to guarantee that the data we're posting is actually coming from our
+todo list app and not from another website.
+If we were to skip adding this token.
+Django would throw an error when we submitted the form because it wouldn't
+be able to guarantee that the post data wasn't coming from another site.
+ -->
+        <div>
+            <p>
+                <label for="id_name">Name</label>
+                <input type="text" id="id_name" name="item_name">
+            </p>
+        </div>
+        <div>
+            <p>
+                <label for="id_done">Done</label>
+                <input type="checkbox" id="id_done" name="item_done">
+            </p>
+        </div>
+        <div>
+            <p>
+                <button type="submit">
+                    Add Item
+                </button>
+            </p>
+        </div>
+    </form>
+</body>
+</html>
