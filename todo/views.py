@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Item
+from .forms import ItemForm
+
 
 # Create your views here.
 
@@ -26,4 +28,8 @@ def add_item(request):
         Item.objects.create(name=name, done=done)
 
         return redirect('get_todo_list')
+    form = itemForm()
+    context = {
+        'form' : form
+    }
     return render(request, 'todo/add_item.html')
